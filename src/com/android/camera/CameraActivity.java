@@ -155,25 +155,6 @@ public class CameraActivity extends ActivityBase
                 mCameraSwitchAnimator.start();
             } else {
                 doChangeCamera(i);
-            boolean canReuse = canReuseScreenNail();
-            CameraHolder.instance().keep();
-            closeModule(mCurrentModule);
-            mCurrentModuleIndex = i;
-            switch (i) {
-                case VIDEO_MODULE_INDEX:
-                    mCurrentModule = new VideoModule();
-                    break;
-                case PHOTO_MODULE_INDEX:
-                    mCurrentModule = new PhotoModule();
-                    break;
-                case PANORAMA_MODULE_INDEX:
-                    mCurrentModule = new PanoramaModule();
-                    break;
-                case LIGHTCYCLE_MODULE_INDEX:
-                    mCurrentModule = LightCycleHelper.createPanoramaModule();
-                    break;
-                case GALLERY_MODULE_INDEX:
-                    break;
             }
 
         }
@@ -196,6 +177,8 @@ public class CameraActivity extends ActivityBase
                 break;
             case LIGHTCYCLE_MODULE_INDEX:
                 mCurrentModule = LightCycleHelper.createPanoramaModule();
+                break;
+            case GALLERY_MODULE_INDEX:
                 break;
         }
         openModule(mCurrentModule, canReuse);
